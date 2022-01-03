@@ -349,8 +349,7 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 			catch(ErroresIntroducidosException e) {
 				
 				System.out.println(e.getMessage());
-				JPanel panel = new JPanel();
-				JOptionPane.showMessageDialog(panel, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				muestraError(e.getMessage());
 				
 			}
 			
@@ -360,6 +359,13 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 		else {
 			System.out.println("Se ha pulsado el botón de volcado a fichero.");
 		}
+		
+	}
+	
+	public void muestraError(String msgError) {
+		
+		JPanel panel = new JPanel();
+		JOptionPane.showMessageDialog(panel, msgError , "Error", JOptionPane.ERROR_MESSAGE);
 		
 	}
 	
