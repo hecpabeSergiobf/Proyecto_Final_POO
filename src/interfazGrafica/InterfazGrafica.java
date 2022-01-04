@@ -8,9 +8,13 @@
 
 package interfazGrafica;
 
+// Bibliotecas de Java
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+// Clases del programa
+import clasesPrograma.*;
 
 public class InterfazGrafica extends JFrame implements ActionListener{
 
@@ -79,13 +83,13 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 	// Botón de volcado a fichero
 	private JButton botonVolcadoAFichero;
 	
+	// Expedición
+	Expedicion expedicion;
+	
 	/* Constructores */
-	public InterfazGrafica(
-		int numeroOficialesDisponibles, int numeroGuardiasDisponibles,
-		int numeroOperariosDisponibles, int numeroArmasDisponibles, int numeroCajasDisponibles,
-		int numeroVehiculosDisponibles, int numeroMochilasDisponibles, int numeroArconesDisponibles
-	){
+	public InterfazGrafica(Expedicion expedicion){
 		
+		this.expedicion = expedicion;
 		
 		// CREACIÓN DE PANELES DE LA VENTANA PRINCIPAL
 		
@@ -140,35 +144,35 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 		
 		
 		// Creación de la etiqueta de oficiales disponibles en el panel de material disponible
-		etiquetaOficialesDisponibles = new JLabel("Oficiales Disponibles: " + numeroOficialesDisponibles);
+		etiquetaOficialesDisponibles = new JLabel("Oficiales Disponibles: " + Oficial.getContOficiales());
 		materialDisponibleContentPane.add(etiquetaOficialesDisponibles);
 		
 		// Creación de la etiqueta de guardias disponibles en el panel de material disponible
-		etiquetaGuardiasDisponibles = new JLabel("Guardias Disponibles: " + numeroGuardiasDisponibles);
+		etiquetaGuardiasDisponibles = new JLabel("Guardias Disponibles: " + Guardia.getcontGuardias());
 		materialDisponibleContentPane.add(etiquetaGuardiasDisponibles);
 		
 		// Creación de la etiqueta de operarios disponibles en el panel de material disponible
-		etiquetaOperariosDisponibles = new JLabel("Operarios Disponibles: " + numeroOperariosDisponibles);
+		etiquetaOperariosDisponibles = new JLabel("Operarios Disponibles: " + expedicion.getOperariosDisponibles());
 		materialDisponibleContentPane.add(etiquetaOperariosDisponibles);
 		
 		// Creación de la etiqueta de armas disponibles en el panel de material disponible
-		etiquetaArmasDisponibles = new JLabel("Armas Disponibles: " + numeroArmasDisponibles);
+		etiquetaArmasDisponibles = new JLabel("Armas Disponibles: " + expedicion.getArmasDisponibles());
 		materialDisponibleContentPane.add(etiquetaArmasDisponibles);
 		
 		// Creación de la etiqueta de cajas disponibles en el panel de material disponible
-		etiquetaCajasDisponibles = new JLabel("Cajas Disponibles: " + numeroCajasDisponibles);
+		etiquetaCajasDisponibles = new JLabel("Cajas Disponibles: " + expedicion.getCajasDisponibles());
 		materialDisponibleContentPane.add(etiquetaCajasDisponibles);
 		
 		// Creación de la etiqueta de vehículos disponibles en el panel de material disponible
-		etiquetaVehiculosDisponibles = new JLabel("Vehículos Disponibles: " + numeroVehiculosDisponibles);
+		etiquetaVehiculosDisponibles = new JLabel("Vehículos Disponibles: " + expedicion.getVehiculosDisponibles());
 		materialDisponibleContentPane.add(etiquetaVehiculosDisponibles);
 		
 		// Creación de la etiqueta de mochilas disponible en el panel de material disponible
-		etiquetaMochilasDisponibles = new JLabel("Mochilas Disponibles: " + numeroMochilasDisponibles);
+		etiquetaMochilasDisponibles = new JLabel("Mochilas Disponibles: " + expedicion.getMochilasDisponibles());
 		materialDisponibleContentPane.add(etiquetaMochilasDisponibles);
 		
 		// Creación de la etiqueta de arcones disponibles en el panel de material disponible
-		etiquetaArconesDisponibles = new JLabel("Arcones Disponibles: " + numeroArconesDisponibles);
+		etiquetaArconesDisponibles = new JLabel("Arcones Disponibles: " + expedicion.getArconesDisponibles());
 		materialDisponibleContentPane.add(etiquetaArconesDisponibles);
 		
 		
@@ -199,7 +203,7 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 		
 		
 		// Creación de la etiqueta de introducción del número de personas en el panel de introducción de datos
-		etiquetaIntroduccionNumeroPersonas = new JLabel("Nº Personas: ");
+		etiquetaIntroduccionNumeroPersonas = new JLabel("Nº Miembros: ");
 		introduccionNumeroPersonasContentPane.add(etiquetaIntroduccionNumeroPersonas);
 		
 		// Creación de la etiqueta de introducción del peso en el panel de introducción de datos
@@ -344,6 +348,76 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 						throw new ErroresIntroducidosException("ERROR: Se han introducido valores no numéricos en el campo de texto del peso.");
 				
 				// Mandamos los datos al calculador de expediciones
+				expedicion.setNumPersonas(Integer.parseInt(inputNumeroPersonas));
+				expedicion.setCantidadPeso(Integer.parseInt(inputPeso));
+				expedicion.setExpedicionPeligrosa(expedicionPeligrosa);
+				
+				try {
+					
+					// Ocultamos todos los datos de la expedición
+					etiquetaCapitan.setVisible(false);
+					suboficialesScrollPane.setVisible(false);
+					guardiasScrollPane.setVisible(false);
+					etiquetaOperarios.setVisible(false);
+					etiquetaArmas.setVisible(false);
+					etiquetaVehiculos.setVisible(false);
+					etiquetaMochilas.setVisible(false);
+					etiquetaArcones.setVisible(false);
+					etiquetaCajas.setVisible(false);
+					
+					// Ocultamos el botón de volcado a fichero
+					botonVolcadoAFichero.setVisible(false);
+					
+					expedicion.calculaExpedicion();
+					
+					// Actualizamos la información de la interfaz gráfica
+					// Capitán
+					etiquetaCapitan.setText("Capitán: " + expedicion.getCapitanExpedicion().getNombre());
+					etiquetaCapitan.setVisible(true);
+					
+					// SubOficiales
+					suboficialesTextArea.setText("SUBOFICIALES:\n");
+					for(int i = 0; i < expedicion.getSubOficialesExpedicion().size(); i++)
+						suboficialesTextArea.append(expedicion.getSubOficialesExpedicion().get(i).getNombre() + "\n");
+					suboficialesScrollPane.setVisible(true);
+					
+					// Guardias
+					guardiasTextArea.setText("GUARDIAS:\n");
+					for(int i = 0; i < expedicion.getGuardiasExpedicion().size(); i++)
+						guardiasTextArea.append(expedicion.getGuardiasExpedicion().get(i).getNombre() + "\n");
+					guardiasScrollPane.setVisible(true);
+					
+					// Operarios
+					etiquetaOperarios.setText("Operarios: " + expedicion.getOperariosExpedicion());
+					etiquetaOperarios.setVisible(true);
+					
+					// Armas
+					etiquetaArmas.setText("Armas: " + expedicion.getArmasExpedicion());
+					etiquetaArmas.setVisible(true);
+					
+					// Cajas
+					etiquetaCajas.setText("Cajas: " + expedicion.getCajasExpedicion());
+					etiquetaCajas.setVisible(true);
+					
+					// Vehículos
+					etiquetaVehiculos.setText("Vehículos: " + expedicion.getVehiculosExpedicion());
+					etiquetaVehiculos.setVisible(true);
+					
+					// Mochilas
+					etiquetaMochilas.setText("Mochilas: " + expedicion.getMochilasExpedicion());
+					etiquetaMochilas.setVisible(true);
+					
+					// Arcones
+					etiquetaArcones.setText("Arcones: " + expedicion.getArconesExpedicion());
+					etiquetaArcones.setVisible(true);
+					
+					// Mostramos el botón de volcado a fichero
+					botonVolcadoAFichero.setVisible(true);
+					
+				}
+				catch(RecursosInsuficientesException e) {
+					muestraError(e.getMessage());
+				}
 				
 			}
 			catch(ErroresIntroducidosException e) {
@@ -353,11 +427,10 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 				
 			}
 			
-			System.out.println("Se ha pulsado el botón de creación de expedición.\nPERSONAS: " + inputNumeroPersonas + ".\nPeso: " + inputPeso + ".\nExpedición Peligrosa: " + expedicionPeligrosa + ".\n");
-			
 		}
 		else {
 			System.out.println("Se ha pulsado el botón de volcado a fichero.");
+			// VOLCAR EL CONTENIDO DE LA EXPEDICIÓN A FICHERO ->
 		}
 		
 	}

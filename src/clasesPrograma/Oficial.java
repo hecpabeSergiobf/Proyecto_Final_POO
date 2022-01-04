@@ -13,6 +13,7 @@ public class Oficial extends Personas {
 	/* Atributos */
 	private int edad;
 	private int experiencia;
+	private boolean disponible;
 	private static int contOficiales;
 	
 	/* Constructores */
@@ -21,11 +22,19 @@ public class Oficial extends Personas {
 		super(nombre,"Oficial");
 		this.edad = edad;
 		this.experiencia = experiencia;
+<<<<<<< HEAD
+=======
+		disponible = true;
+>>>>>>> calculadorExpediciones
 		contOficiales++;
 	}
 	
 	/* Métodos Getters */
+<<<<<<< HEAD
 	public int getContOficiales() {
+=======
+	public static int getContOficiales() {
+>>>>>>> calculadorExpediciones
 		
 		return contOficiales;
 		
@@ -43,6 +52,18 @@ public class Oficial extends Personas {
 		
 	}
 	
+<<<<<<< HEAD
+=======
+	public boolean getDisponible() {
+		return disponible;
+	}
+	
+	/* Métodos Setters */
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
+	
+>>>>>>> calculadorExpediciones
 	/* Métodos Públicos */
 	public String printDatos() {
 		

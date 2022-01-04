@@ -30,7 +30,11 @@ public class Guardia extends Personas {
 		
 	}
 	
+<<<<<<< HEAD
 	public int getcontGuardias() {
+=======
+	public static int getcontGuardias() {
+>>>>>>> calculadorExpediciones
 		
 		return contGuardias;
 		

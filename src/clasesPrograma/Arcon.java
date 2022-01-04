@@ -8,7 +8,7 @@
 
 package clasesPrograma;
 
-public class Arcon extends Almacenamiento{
+public class Arcon extends Almacenamiento implements Canjeable {
 
 	/* Constantes */
 	public static final int CAPACIDAD_ARCONES = 200;
@@ -45,4 +45,19 @@ public class Arcon extends Almacenamiento{
 		
 	}
 	
+<<<<<<< HEAD
+=======
+	public int canjea(int cantidadACanjear) {
+		
+		int cajasCanjeadas = 0;
+		
+		// Las cajas que canjearemos será la cantidad de cajas que podemos canjear con un arcón por el número de los mismos que queremos canjear
+		cajasCanjeadas = CAPACIDAD_ARCONES / Caja.CAPACIDAD_CAJA;
+		cajasCanjeadas *= cantidadACanjear;
+		
+		return cajasCanjeadas;
+		
+	}
+	
+>>>>>>> calculadorExpediciones
 }

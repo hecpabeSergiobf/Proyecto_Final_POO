@@ -21,17 +21,23 @@ public class Inicio {
 	public static void main(String args[]){
 		
 		//Creacion de variables para los obejetos disponibles para la expedicion
-		ArrayList<Oficial> avaliableOficiales= new ArrayList<Oficial>();
-		ArrayList<Guardia> avaliableGuardias= new ArrayList<Guardia>();
-		Operario avaliableOperarios=new Operario(0);
-		Arcon avaliableArcon=new Arcon(0);
-		Vehiculo avaliableVehiculo=new Vehiculo(0);
-		Caja avaliableCaja=new Caja(0);
-		Mochila avaliableMochila=new Mochila(0);
-		Arma avaliableArmas=new Arma(0);
+		ArrayList<Oficial> avaliableOficiales = new ArrayList<Oficial>();
+		ArrayList<Guardia> avaliableGuardias = new ArrayList<Guardia>();
+		Operario avaliableOperarios = new Operario(0);
+		Arcon avaliableArcon = new Arcon(0);
+		Vehiculo avaliableVehiculo = new Vehiculo(0);
+		Caja avaliableCaja = new Caja(0);
+		Mochila avaliableMochila = new Mochila(0);
+		Arma avaliableArmas = new Arma(0);
 
 		// Interfaz Gráfica
 		InterfazGrafica interfaz;
+<<<<<<< HEAD
+=======
+		
+		// Expedición
+		Expedicion expedicion;
+>>>>>>> calculadorExpediciones
 
 		// Variable con la que detectamos si ha ocurrido algún error en la lectura del fichero
 		boolean excep=false;
@@ -43,7 +49,8 @@ public class Inicio {
 		try {
 			
 			//Lectura del fichero y inicializaion de las variables a sus correspondientes valores
-			Lectura_fichero.leecturafichero(avaliableOficiales,avaliableGuardias,avaliableOperarios,avaliableArcon,avaliableVehiculo,avaliableCaja,avaliableMochila,avaliableArmas);
+			Lectura_fichero.leecturafichero(avaliableOficiales, avaliableGuardias, avaliableOperarios, avaliableArcon, avaliableVehiculo, avaliableCaja,
+					avaliableMochila, avaliableArmas);
 		
 		}catch(ExcepcionRecursos myException){
 			
@@ -55,6 +62,7 @@ public class Inicio {
 		
 		// Si hay excepción creamos la interfaz con todo inicializado a 0, si no, con los valores leídos de fichero
 		if(excep) {
+<<<<<<< HEAD
 			interfaz = new InterfazGrafica(0, 0, 0, 0, 0, 0, 0, 0);
 		}
 		else {
@@ -62,6 +70,15 @@ public class Inicio {
 					avaliableOficiales.get(0).getContOficiales(),avaliableGuardias.get(0).getcontGuardias(),
 					avaliableOperarios.getNumOperario(),avaliableArmas.getNumArmas(),avaliableCaja.getNumCajas(),avaliableVehiculo.getNumVehiculos(),
 					avaliableMochila.getNumMochilas(),avaliableArcon.getNumArcones());
+=======
+			expedicion = new Expedicion(avaliableOficiales, avaliableGuardias, 0, 0, 0, 0, 0, 0);
+			interfaz = new InterfazGrafica(expedicion);
+		}
+		else {
+			expedicion = new Expedicion(avaliableOficiales, avaliableGuardias, avaliableOperarios.getNumOperario(), avaliableArmas.getNumArmas(),
+					avaliableCaja.getNumCajas(), avaliableVehiculo.getNumVehiculos(), avaliableMochila.getNumMochilas(), avaliableArcon.getNumArcones());
+			interfaz = new InterfazGrafica(expedicion);
+>>>>>>> calculadorExpediciones
 		}
 		
 		// Mostramos la interfaz

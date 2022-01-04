@@ -8,7 +8,7 @@
 
 package clasesPrograma;
 
-public class Vehiculo extends Almacenamiento {
+public class Vehiculo extends Almacenamiento implements Canjeable {
 
 	/* Constantes */
 	public static final int CAPACIDAD_VEHICULO = 1000;
@@ -45,4 +45,20 @@ public class Vehiculo extends Almacenamiento {
 		
 	}
 	
+<<<<<<< HEAD
+=======
+	public int canjea(int cantidadACanjear) {
+		
+		int cajasCanjeadas = 0;
+		
+		// Las cajas que obtendremos de canjear la cantidad de vehículos a canjear será, la cantidad de cajas que canjeamos con un vehículo por la cantidad de los mismos
+		// que vamos a canjear
+		cajasCanjeadas = CAPACIDAD_VEHICULO / Caja.CAPACIDAD_CAJA;
+		cajasCanjeadas *= cantidadACanjear;
+		
+		return cajasCanjeadas;
+		
+	}
+	
+>>>>>>> calculadorExpediciones
 }
