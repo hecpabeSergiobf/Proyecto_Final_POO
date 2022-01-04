@@ -1,32 +1,42 @@
+
+
+/*
+ * 	Título: Mochila
+ * 	Nombre: Héctor Paredes Benavides / Sergio Bermudez Fernández
+ * 	Descripción: Clase con la que trabajamos con las mochilas
+ */
+
 package clasesPrograma;
 
 public class Mochila extends Recursos{
 
-	
+	/* Atributos */
 	private int numMochilas;
 	
-	public Mochila(int Numero) {
+	/* Constructores */
+	public Mochila(int numero) {
 		
-		this.numMochilas=Numero;
+		this.numMochilas = numero;
 		
 	}
 	
-	
-	public void setnumMochilas(int numMochilas) {
+	/* Métodos Setters */
+	public void setNumMochilas(int numMochilas) {
 		
-		this.numMochilas=numMochilas;
+		this.numMochilas = numMochilas;
 	
 	}
 	
-	public int getnumMochilas() {
+	/* Métodos Getters */
+	public int getNumMochilas() {
 		
 		return numMochilas;
 	
 	}
 	
-	
+	/* Métodos Públicos */
 	public String printDatos() {
 		
-		return ("Numero de mochilas: "+numMochilas);
+		return ("Numero de mochilas: " + numMochilas);
 	}
 }

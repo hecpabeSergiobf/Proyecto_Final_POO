@@ -1,43 +1,45 @@
+
+
+/*
+ * 	Título: Operario
+ * 	Nombre: Héctor Paredes Benavides / Sergio Bermudez Fernández
+ * 	Descripción: Clase con la que trabajamos con los operarios
+ */
+
 package clasesPrograma;
 
 public class Operario extends Personas{
 
+	/* Atributos */
 	private int numOperario;
 	
-	
-	
-	public Operario(int Numero) {
+	/* Constructores */
+	public Operario(int numero) {
 		
-		super("Operario","Operario");
-		this.numOperario=Numero;
+		super("Operario", "Operario");
+		this.numOperario = numero;
 		
 	}
 	
-	
-	public void setnumOperario(int numOperario) {
+	/* Métodos Setters */
+	public void setNumOperario(int numOperario) {
 		
 		this.numOperario=numOperario;
 	
 	}
 	
-	public int getnumOperario() {
+	/* Métodos Getters */
+	public int getNumOperario() {
 		
 		return numOperario;
 	
 	}
 	
-	
+	/* Métodos Públicos */
 	public String printDatos() {
 		
-		return ("Numero de Operaios: "+numOperario);
+		return ("Numero de Operaios: " + numOperario);
 		
 	}
-	
-	
-	
-
-	
-	
-	
 	
 }
