@@ -1,32 +1,43 @@
+
+
+/*
+ * 	Título: Arma
+ * 	Nombre: Héctor Paredes Benavides / Sergio Bermudez Fernández
+ * 	Descripción: Clase con la que trabajamos con las armas
+ */
+
 package clasesPrograma;
 
 public class Arma {
 
+	/* Atributos */
 	private int numArmas;
 	
-	public Arma(int Numero) {
+	/* Constructores */
+	public Arma(int numero) {
 		
-		this.numArmas=Numero;
+		this.numArmas = numero;
 		
 	}
 	
-	public void setnumArmas(int numArmas) {
+	/* Métodos Setters */
+	public void setNumArmas(int numArmas) {
 		
-		this.numArmas=numArmas;
+		this.numArmas = numArmas;
 	
 	}
 	
-	public int getnumArmas() {
+	/* Métodos Getters */
+	public int getNumArmas() {
 		
 		return numArmas;
 	
 	}
 	
-	
-	
+	/* Métodos públicos */
 	public String printDatos() {
 		
-		return ("Numero de armas: "+numArmas);
+		return ("Numero de armas: " + numArmas);
 	}
 	
 }

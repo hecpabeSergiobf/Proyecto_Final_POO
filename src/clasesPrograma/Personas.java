@@ -1,40 +1,49 @@
+
+
+/*
+ * 	Título: Personas
+ * 	nombre: Héctor Paredes Benavides
+ * 	Descripción: Clase abstracta con la que representamos a las personas (oficiales, guardias y operarios)
+ */
+
 package clasesPrograma;
 
 public abstract class Personas {
 
+	/* Atributos */
+	private String nombre;
+	private String puesto;
 	
-	private String Nombre;
-	private String Puesto;
-	
-	
-	public Personas(String Nombre,String Puesto) {
+	/* Constructores */
+	public Personas(String nombre, String puesto) {
 		
-		this.Nombre=Nombre;
-		this.Puesto=Puesto;
-		
-	}
-	
-	
-	public String getNombre() {
-		
-		return Nombre;
+		this.nombre = nombre;
+		this.puesto = puesto;
 		
 	}
 	
-	public String getPuesto() {
+	/* Métodos Getters */
+	public final String getNombre() {
 		
-		return Puesto;
-		
-	}
-	
-	public  void setNombre(String Nombre) {
-		
-		this.Nombre=Nombre;
+		return nombre;
 		
 	}
 	
+	/* Métodos Setters */
+	public final String getPuesto() {
+		
+		return puesto;
+		
+	}
 	
-	//Funcion para el polimorfismo
+	/* Métodos Setters */
+	public final void setNombre(String nombre) {
+		
+		this.nombre = nombre;
+		
+	}
+	
+	/* Métodos Públicos */
 	public abstract String printDatos();
 	
 }

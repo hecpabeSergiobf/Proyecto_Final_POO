@@ -1,0 +1,12 @@
+oficial;pelaez;20;55
+oficial;rodriguez;10;40
+oficial;lopez;15;35
+guardia;gomez;90
+guardia;jimenez;100
+guardia;Ramirez;85
+operarios;20
+armas;5
+cajas;9
+vehiculos;5
+mochilas;20
+arcones;5

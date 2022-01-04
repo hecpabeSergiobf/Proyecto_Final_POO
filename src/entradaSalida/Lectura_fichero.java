@@ -1,174 +1,160 @@
+
+
+/*
+ * 	Título: Lectura de Fichero
+ * 	nombre: Héctor Paredes Benavides / Sergio Bermudez Fernández
+ * 	Descripción: Clase con la que leemos los datos del fichero de recursos disponibles para la expedición
+ */
+
 package entradaSalida;
+
+// Clases del programa
 import clasesPrograma.*;
 
+// Bibliotecas de Java
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 
-public  class Lectura_fichero{
-	
+public class Lectura_fichero{
 		
-	public static void leecturafichero(ArrayList<Oficial> avaliableOficiales,ArrayList<Guardia> avaliableGuardias,Operario avaliableOperarios
-			,Arcon avaliableArcon,Vehiculo avaliableVehiculo,Caja avaliableCaja,Mochila avaliableMochila,Arma avaliableArmas) throws ExcepcionRecursos {
+	public static void leecturafichero(
+			ArrayList<Oficial> avaliableOficiales, ArrayList<Guardia> avaliableGuardias, Operario avaliableOperarios
+			,Arcon avaliableArcon, Vehiculo avaliableVehiculo, Caja avaliableCaja, Mochila avaliableMochila, Arma avaliableArmas) throws ExcepcionRecursos {
 		
 			int hayOficiales=0;
 			int hayGuardias=0;
 			
 			//Inicializamos el fichero
-			File fichero=new File("fichero.txt");
+			File fichero = new File("fichero.txt");
 		
 			//Creamos un Scanner para leer las lineas del fichero
-			Scanner LectorLinea;
+			Scanner lectorLinea;
 		
 			try {
-				
-				
-
-				
+					
 				//Le decimos al Scanneer que va a leer del fichero dentro de un try catch por si hay error
-				LectorLinea=new Scanner(fichero);
-				
+				lectorLinea = new Scanner(fichero);
 				
 				//Mientras que haya lineas lee el fichero
-				while(LectorLinea.hasNextLine()) {
+				while(lectorLinea.hasNextLine()) {
 					
 					//Lee la siguiente linea
-					String linea=LectorLinea.nextLine();
+					String linea = lectorLinea.nextLine();
 					
 					//Scanner para leer las palabras separadas
-					Scanner LectorPalabra=new Scanner(linea);
-					LectorPalabra.useDelimiter("\\s*;\\s*");
-					
+					Scanner lectorPalabra = new Scanner(linea);
+					lectorPalabra.useDelimiter("\\s*;\\s*");
 					
 					//Metemos la lectura de palabras en un try catch por si hay algun parametro mal introducido
 					try {
 					
 						//Mientras haya mas linea lee
-						while(LectorPalabra.hasNext()) {
+						while(lectorPalabra.hasNext()) {
 							
 							//Separamos en token las lineas
 							String token;
-							token=LectorPalabra.next();	
-							
+							token=lectorPalabra.next();
 							
 							//Comprobamos si es oficial, operario....
 							if(token.equals("oficial")) {
 								
 								hayOficiales=1;
 								//Inicializamos el nombre, edad, y experiencia 
-								String Nombre;
+								String nombre;
 								int exp=0;
 								int edad=0;
 								
 								//Los parseamos  y en caso de que no sea int saltara la Excepcion
-								Nombre=LectorPalabra.next();
-								exp=LectorPalabra.nextInt();
-								edad=LectorPalabra.nextInt();
+								nombre = lectorPalabra.next();
+								exp = lectorPalabra.nextInt();
+								edad = lectorPalabra.nextInt();
 								
 								//Creamos el oficial y lo añadimos a una array list de nuestros oficiales disponibles
-								Oficial ofi=new Oficial(Nombre,exp,edad);
+								Oficial ofi = new Oficial(nombre,exp,edad);
 								
 								avaliableOficiales.add(ofi);
-								
-								
 								
 							//Hacemos lo mismo que con Oficiales pero con guardias
 							}else if(token.equals("guardia")){
 								
-								hayGuardias=1;
+								hayGuardias = 1;
 								//Iniciamos nombre y aptitud
-								String Nombre;
-								int aptitud=0;
+								String nombre;
+								int aptitud = 0;
 								
 								//Cogemos del fichero el nombre del Guardia y su aptitud
-								Nombre=LectorPalabra.next();
-								aptitud=LectorPalabra.nextInt();
-								
+								nombre=lectorPalabra.next();
+								aptitud=lectorPalabra.nextInt();
 								
 								//Lo creamos y lo guardamos en una arrayList de guardias
-								Guardia guardia=new Guardia(Nombre,aptitud);
+								Guardia guardia = new Guardia(nombre,aptitud);
 								
 								avaliableGuardias.add(guardia);
 								
-
-								
 							}else if(token.equals("operarios")){
-								
 								
 								//Para los operarios solo tenemos un numero, Creamos el objeto en el main y se lo pasamos a leefichero para que el lo guarde
 								int numOperarios;
 								
 								//Leemos el numero que hay
-								numOperarios=LectorPalabra.nextInt();
+								numOperarios = lectorPalabra.nextInt();
 								
 								//Seteamos el numero de Operarios
-								avaliableOperarios.setnumOperario(numOperarios);
-								
-			
+								avaliableOperarios.setNumOperario(numOperarios);
 							
 							//Hacemos lo mismo para el resto de variables
 							}else if(token.equals("cajas")){
 								
 								int numCajas;
 								
-								
 								//Lemos el numero
-								numCajas=LectorPalabra.nextInt();
-								
+								numCajas = lectorPalabra.nextInt();
 								
 								//Seteamos el numero de cajas
-								avaliableCaja.setnumCajas(numCajas);
-								
-
+								avaliableCaja.setNumCajas(numCajas);
 							
 							}else if(token.equals("arcones")){
 								
 								int numArcones;
 								
 								//Lemos el numero
-								numArcones=LectorPalabra.nextInt();
+								numArcones=lectorPalabra.nextInt();
 								
 								//Seteamos el numero de Arcones
-								avaliableArcon.setnumArcones(numArcones);
-								
-														
+								avaliableArcon.setNumArcones(numArcones);
 								
 							}else if(token.equals("vehiculos")){
 								
 								int numVehiculos;
 								
 								//Leemos el numero de Vehiculos
-								numVehiculos=LectorPalabra.nextInt();
+								numVehiculos = lectorPalabra.nextInt();
 								
 								//Seteamos el numero de Vehiculos
-								avaliableVehiculo.setnumVehiculos(numVehiculos);
-								
+								avaliableVehiculo.setNumVehiculos(numVehiculos);
 								
 							}else if(token.equals("mochilas")){
 								
 								int numMochilas;
 								
 								//Leemos el numero de Mochilas
-								numMochilas=LectorPalabra.nextInt();
+								numMochilas = lectorPalabra.nextInt();
 								
 								//Seteamos el numero de Mochilas
-								avaliableMochila.setnumMochilas(numMochilas);
-								
-
+								avaliableMochila.setNumMochilas(numMochilas);
 								
 							}else if(token.equals("armas")){
 								
 								int numArmas;
 								
 								//Leemos el numero de armas
-								numArmas=LectorPalabra.nextInt();
+								numArmas = lectorPalabra.nextInt();
 								
 								//Seteamos el numero de armas
-								avaliableArmas.setnumArmas(numArmas);
-								
-
+								avaliableArmas.setNumArmas(numArmas);
 								
 							}
 							
@@ -177,74 +163,72 @@ public  class Lectura_fichero{
 					//En caso de que haya un error en el formato no no haya un int saltara a la excepcion
 					} catch (Exception  exc) {
 						//System.out.println("El fichero no tiene el formato correcto "+ exc.toString());
-						LectorPalabra.close();
+						lectorPalabra.close();
 						fichero.delete();
 						throw new ExcepcionRecursos("Fichero con formato incorrecto");
 						
 					}
 					
-					LectorPalabra.close();
+					lectorPalabra.close();
 									
 				}
 				
 			//En caso de que el fichero no exista saltara al error
-			}catch(FileNotFoundException Exc) {
+			}catch(FileNotFoundException exc) {
 							
 				System.out.println("Ha ocurrido un problema con el fichero");
-				Exc.printStackTrace();
+				exc.printStackTrace();
+				throw new ExcepcionRecursos("ERROR: No se ha encontrado fichero de recursos");
 				
 			}finally {
 				
 				//En caso de que se haya abierto el fichero lo cerramos
 				try {
-					if(null!=fichero) {
+					if(null != fichero) {
 						fichero.delete();
 										
 					}
 
-				}catch(Exception Exc2) {
-					Exc2.printStackTrace();
+				}catch(Exception exc2) {
+					exc2.printStackTrace();
 				}
 			}
 			
 			//Coprobamos que esten todos los recursor y de no ser asi lanzamos la excepcion con su mensaje
-			if(hayOficiales<=0){	
+			if(hayOficiales <= 0){	
 				
 				throw new ExcepcionRecursos("No hay Oficliales");
 				
-			}else if(hayGuardias<=0){	
+			}else if(hayGuardias <= 0){	
 				
 				throw new ExcepcionRecursos("No hay Guardias");
 				
-			}else if(avaliableOperarios.getnumOperario()<=0) {
+			}else if(avaliableOperarios.getNumOperario() <= 0) {
 				
 				throw new ExcepcionRecursos("No hay Operarios");
 				
-			}else if(avaliableArcon.getnumArcones()<=0) {
+			}else if(avaliableArcon.getNumArcones() <= 0) {
 				
 				throw new ExcepcionRecursos("No hay Arcones");
 				
-			}else if(avaliableCaja.getnumCajas()<=0) {
+			}else if(avaliableCaja.getNumCajas() <= 0) {
 				
 				throw new ExcepcionRecursos("No hay cajas");
 				
-			}else if(avaliableVehiculo.getnumVehiculos()<=0) {
+			}else if(avaliableVehiculo.getNumVehiculos() <= 0) {
 				
 				throw new ExcepcionRecursos("No hay Vehiculos");
 				
-			}else if(avaliableArmas.getnumArmas()<=0) {
+			}else if(avaliableArmas.getNumArmas() <= 0) {
 				
 				throw new ExcepcionRecursos("No hay Armas");
 				
-			}else if(avaliableMochila.getnumMochilas()<=0) {
+			}else if(avaliableMochila.getNumMochilas() <= 0) {
 				
 				throw new ExcepcionRecursos("No hay Mochilas");
 				
 			}
 		
-		
-		
 	}
-	
 	
 }

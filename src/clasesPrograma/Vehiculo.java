@@ -1,43 +1,48 @@
+
+
+/*
+ * 	Título: Vehículo
+ * 	Nombre: Héctor Paredes Benavides / Sergio Bermudez Fernández
+ * 	Descripción: Clase con la que representamos a los vehículos
+ */
+
 package clasesPrograma;
 
 public class Vehiculo extends Almacenamiento {
 
+	/* Constantes */
+	public static final int CAPACIDAD_VEHICULO = 1000;
 	
+	/* Atributos */
 	private int numVehiculos;
 	
-	public Vehiculo(int Numero) {
+	/* Constructores */
+	public Vehiculo(int numero) {
 		
-		super(1000);
-		this.numVehiculos=Numero;
+		super(CAPACIDAD_VEHICULO);
+		this.numVehiculos = numero;
 		
 	}
 	
-	
-	public void setnumVehiculos(int numVehiculos) {
+	/* Métodos Setters */
+	public void setNumVehiculos(int numVehiculos) {
 		
-		this.numVehiculos=numVehiculos;
+		this.numVehiculos = numVehiculos;
 	
 	}
 	
-	public int getnumVehiculos() {
+	/* Métodos Getters */
+	public int getNumVehiculos() {
 		
 		return numVehiculos;
 	
 	}
 	
-	public int getCapacidad() {
-		
-		return super.getCapacidad();
-		
-	}
-	
-	
+	/* Métodos Públicos */
 	public String printDatos() {
 		
-		return ("Numero de vehiculos: "+ numVehiculos+ " capacidad por vehiculo de "+ super.getCapacidad());
+		return ("numero de vehiculos: " + numVehiculos + " capacidad por vehiculo de " + getCapacidad());
 		
 	}
-	
-	
 	
 }

@@ -8,9 +8,10 @@
 
 package principal;
 
-
+// Bibliotecas de Java
 import java.util.ArrayList;
 
+// Clases del programa
 import clasesPrograma.*;
 import interfazGrafica.*;
 import entradaSalida.*;
@@ -29,9 +30,13 @@ public class Inicio {
 		Mochila avaliableMochila=new Mochila(0);
 		Arma avaliableArmas=new Arma(0);
 
+		// Interfaz Gráfica
+		InterfazGrafica interfaz;
 
+		// Variable con la que detectamos si ha ocurrido algún error en la lectura del fichero
 		boolean excep=false;
 		
+		// Variable con la que recogemos y mostramos el mensaje de error de la excepción
 		String msgError="";
 
 		//Lo metemos dentro de un bloque try catch para en caso de que no haya un recurso coga la excepcion y acabe
@@ -48,14 +53,21 @@ public class Inicio {
 			
 		}
 		
-		InterfazGrafica interfaz=new InterfazGrafica(avaliableOficiales.get(0).getcontOficiales(),avaliableGuardias.get(0).getcontGuardias(),
-				avaliableOperarios.getnumOperario(),avaliableArmas.getnumArmas(),avaliableCaja.getnumCajas(),avaliableVehiculo.getnumVehiculos(),
-				avaliableMochila.getnumMochilas(),avaliableArcon.getnumArcones());
+		// Si hay excepción creamos la interfaz con todo inicializado a 0, si no, con los valores leídos de fichero
+		if(excep) {
+			interfaz = new InterfazGrafica(0, 0, 0, 0, 0, 0, 0, 0);
+		}
+		else {
+			interfaz = new InterfazGrafica(
+					avaliableOficiales.get(0).getContOficiales(),avaliableGuardias.get(0).getcontGuardias(),
+					avaliableOperarios.getNumOperario(),avaliableArmas.getNumArmas(),avaliableCaja.getNumCajas(),avaliableVehiculo.getNumVehiculos(),
+					avaliableMochila.getNumMochilas(),avaliableArcon.getNumArcones());
+		}
 		
-		
-		
+		// Mostramos la interfaz
 		interfaz.setVisible(true);
 		
+		// Si ocurrió algún error lo mostramos por la interfaz gráfica
 		if(excep) {
 			
 			interfaz.muestraError(msgError);

@@ -1,41 +1,35 @@
+
+
+/*
+ * 	Título: Oficial
+ * 	Nombre: Héctor Paredes Benavides / Sergio Bermudez Fernández
+ * 	Descripción: Clase con la que trabajamos con los oficiales
+ */
+
 package clasesPrograma;
 
 public class Oficial extends Personas {
 
-	//Variables
+	/* Atributos */
 	private int edad;
 	private int experiencia;
 	private static int contOficiales;
 	
-	
-	//CONSTRUCTOR
-	public Oficial(String Nombre,int experiencia,int edad) {
+	/* Constructores */
+	public Oficial(String nombre, int experiencia, int edad) {
 		
-		super(Nombre,"Oficial");
-		this.edad=edad;
-		this.experiencia=experiencia;
+		super(nombre,"Oficial");
+		this.edad = edad;
+		this.experiencia = experiencia;
 		contOficiales++;
 	}
 	
-	//Set
-	public void setNombre(String Nombre) {
-		
-		super.setNombre(Nombre);
-		
-	}
-	
-	public String getNombre() {
-		
-		return super.getNombre();
-		
-	}
-	
-	public int getcontOficiales() {
+	/* Métodos Getters */
+	public int getContOficiales() {
 		
 		return contOficiales;
 		
 	}
-	
 	
 	public int getEdad() {
 		
@@ -49,11 +43,10 @@ public class Oficial extends Personas {
 		
 	}
 	
+	/* Métodos Públicos */
 	public String printDatos() {
 		
-		
-		return ("Nombre: "+super.getNombre()+"\nexp: "+ experiencia+"\nedad: "+edad);
-		
+		return ("Nombre: " + getNombre() + "\nexp: " + experiencia + "\nedad: " + edad);
 		
 	}
 	
